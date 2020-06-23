@@ -12,6 +12,7 @@ class Header extends StatelessWidget implements ObstructingPreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoNavigationBar(
+      automaticallyImplyMiddle: false,
       border: Border(),
       backgroundColor: Colors.white,
       padding: EdgeInsetsDirectional.only(start: 10.0, end: 10.0),
@@ -24,7 +25,7 @@ class Header extends StatelessWidget implements ObstructingPreferredSizeWidget {
           style: TextStyle(
             color: CupertinoColors.systemBlue,
             fontWeight: FontWeight.w900,
-            fontSize: 26,
+            fontSize: 22,
           ),
         ),
       ),
@@ -44,7 +45,6 @@ class Header extends StatelessWidget implements ObstructingPreferredSizeWidget {
           ),
         ],
       ),
-      previousPageTitle: 'Apps designs',
     );
   }
 
