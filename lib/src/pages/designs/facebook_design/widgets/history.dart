@@ -12,13 +12,10 @@ class History extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: Color.fromRGBO(0, 0, 0, 0.2),
         image: DecorationImage(
-          fit: BoxFit.cover,
-          image: (index == 0)
-              ? AssetImage('assets/images/avatar.jpg')
-              : NetworkImage((index % 2 > 0)
-                  ? 'http://lorempixel.com/400/300/technics/${index + 1}/'
-                  : 'http://lorempixel.com/400/200/sports/${index + 1}/'),
-        ),
+            fit: BoxFit.cover,
+            image: AssetImage((index == 0)
+                ? 'assets/images/avatar.jpg'
+                : 'assets/images/test/${index + 1}.jpg')),
       ),
       width: 90,
       height: 100,
@@ -36,8 +33,8 @@ class History extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         border: Border.all(color: Colors.white, width: 2),
                         image: DecorationImage(
-                          image: NetworkImage(
-                              'https://i.pravatar.cc/150?img=${index + 1}'),
+                          image: AssetImage(
+                              'assets/images/profile/${index + 5}.jpg'),
                         ),
                       ),
                     ),

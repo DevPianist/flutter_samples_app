@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const Header({
     Key key,
     this.color1,
@@ -13,44 +13,39 @@ class Header extends StatelessWidget {
   final Color color3;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color2,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14),
-            child: Row(
-              children: <Widget>[
-                CupertinoButton(
-                  minSize: 0,
-                  padding: EdgeInsets.zero,
-                  child: Text('Edit'),
-                  onPressed: () {},
-                ),
-                Spacer(),
-                CupertinoButton(
-                  minSize: 0,
-                  padding: EdgeInsets.zero,
-                  child: Icon(CupertinoIcons.create, size: 30),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Text(
-              'Chats',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Divider(
-            height: 0,
-            color: color3,
-          )
-        ],
+    return CupertinoNavigationBar(
+      transitionBetweenRoutes: false,
+      automaticallyImplyLeading: false,
+      border: Border.all(width: 0.6, color: color3),
+      middle: Text(
+        'Chats',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      ),
+      leading: CupertinoButton(
+        minSize: 0,
+        padding: EdgeInsets.zero,
+        child: Text('Edit'),
+        onPressed: () {},
+      ),
+      trailing: CupertinoButton(
+        minSize: 0,
+        padding: EdgeInsets.zero,
+        child: Icon(CupertinoIcons.create, size: 30),
+        onPressed: () {},
       ),
     );
+  }
+
+  @override
+  Size get preferredSize {
+    return const Size.fromHeight(44.0);
+  }
+
+  @override
+  bool shouldFullyObstruct(BuildContext context) {
+    final Color backgroundColor =
+        CupertinoDynamicColor.resolve(this.color2, context) ??
+            CupertinoTheme.of(context).barBackgroundColor;
+    return backgroundColor.alpha == 0xFF;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const Header({
     Key key,
     @required this.color1,
@@ -11,39 +11,53 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    return CupertinoNavigationBar(
+      border: Border(),
+      backgroundColor: Colors.white,
+      padding: EdgeInsetsDirectional.only(start: 10.0, end: 10.0),
+      automaticallyImplyLeading: false,
+      transitionBetweenRoutes: false,
+      leading: Container(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          'facebook',
+          style: TextStyle(
+            color: CupertinoColors.systemBlue,
+            fontWeight: FontWeight.w900,
+            fontSize: 26,
+          ),
+        ),
+      ),
+      trailing: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5.0),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  'facebook',
-                  style: TextStyle(
-                    color: CupertinoColors.systemBlue,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 26,
-                  ),
-                ),
-                Spacer(),
-                CircleAvatar(
-                  child: Icon(Icons.search, size: 24, color: Colors.black),
-                  maxRadius: 16,
-                  backgroundColor: color1,
-                ),
-                SizedBox(width: 10),
-                CircleAvatar(
-                  child: Icon(Icons.message, size: 20, color: Colors.black),
-                  maxRadius: 16,
-                  backgroundColor: color1,
-                ),
-              ],
-            ),
+          CircleAvatar(
+            child: Icon(Icons.search, size: 24, color: Colors.black),
+            maxRadius: 16,
+            backgroundColor: color1,
+          ),
+          SizedBox(width: 8),
+          CircleAvatar(
+            child: Icon(Icons.message, size: 20, color: Colors.black),
+            maxRadius: 16,
+            backgroundColor: color1,
           ),
         ],
       ),
+      previousPageTitle: 'Apps designs',
     );
+  }
+
+  @override
+  Size get preferredSize {
+    return const Size.fromHeight(44.0);
+  }
+
+  @override
+  bool shouldFullyObstruct(BuildContext context) {
+    final Color backgroundColor =
+        CupertinoDynamicColor.resolve(this.color1, context) ??
+            CupertinoTheme.of(context).barBackgroundColor;
+    return backgroundColor.alpha == 0xFF;
   }
 }

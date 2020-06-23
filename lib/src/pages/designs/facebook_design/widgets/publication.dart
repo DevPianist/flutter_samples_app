@@ -6,13 +6,13 @@ class Publication extends StatelessWidget {
     @required this.avatar,
     @required this.name,
     @required this.content,
-    this.imageUrlContent,
+    this.imageAssetContent,
     this.imageContent = false,
   }) : super(key: key);
   final String avatar;
   final String name;
   final String content;
-  final String imageUrlContent;
+  final String imageAssetContent;
   final Color color2 = Colors.grey[600];
   final Color color3 = Colors.grey[500];
   final bool imageContent;
@@ -83,19 +83,7 @@ class Publication extends StatelessWidget {
                   height: 220,
                   child: Image(
                     fit: BoxFit.cover,
-                    image: NetworkImage(imageUrlContent),
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent loadingProgress) {
-                      if (loadingProgress != null) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.black26),
-                          ),
-                        );
-                      } else
-                        return child;
-                    },
+                    image: AssetImage(imageAssetContent),
                   ),
                 )
               : Container(),

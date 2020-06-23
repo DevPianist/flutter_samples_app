@@ -18,18 +18,13 @@ class _WhatsappDesignPageState extends State<WhatsappDesignPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        transitionBetweenRoutes: false,
-        middle: Text('whatsapp iOS'),
-        previousPageTitle: 'Apps designs',
-      ),
+      navigationBar: Header(color1: color1, color2: color2, color3: color3),
       child: SafeArea(
         child: Container(
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Header(color2: color2, color3: color3),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
@@ -53,6 +48,9 @@ class _WhatsappDesignPageState extends State<WhatsappDesignPage> {
                       ),
                     ),
                     Divider(height: 1, color: color3),
+                    ItemChat(color3: color3, color1: color1),
+                    ItemChat(color3: color3, color1: color1),
+                    ItemChat(color3: color3, color1: color1),
                     ItemChat(color3: color3, color1: color1),
                     ItemChat(color3: color3, color1: color1),
                     ItemChat(color3: color3, color1: color1),
