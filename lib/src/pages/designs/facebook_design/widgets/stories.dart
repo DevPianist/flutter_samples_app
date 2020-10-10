@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'history.dart';
+import 'story.dart';
 
 class Stories extends StatelessWidget {
   final List<Widget> _stories =
